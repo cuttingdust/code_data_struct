@@ -203,6 +203,7 @@ macro(set_cpp name)
     target_compile_features(${name} PRIVATE
         cxx_std_23
     )
+	
 
     target_link_options(${name} PRIVATE
         -D2:-AllowCompatibleILVersions
@@ -224,6 +225,8 @@ macro(set_cpp name)
             COMPILE_FLAGS "/Zc:wchar_t"	# 是
 			#COMPILE_FLAGS "/Zc:wchar_t-" #否
         )
+
+		
 
         # set_target_properties(${name} PROPERTIES
         # COMPILE_FLAGS "-bigobj"
@@ -259,9 +262,14 @@ macro(set_cpp name)
     # DEBUG_POSTFIX "_d"
     # )
     set(debug_postfix "")
-
+	
     if(WIN32)
         get_target_property(debug_postfix ${name} DEBUG_POSTFIX)
+		if(MSVC)
+		 target_compile_options(${name} PRIVATE
+			$<$<CONFIG:Debug>:/ZI>
+			)
+		endif()
     endif()
 endmacro()
 
