@@ -92,3 +92,6 @@ LinkListNode *Delete_After_LkList(LinkListNode *ptr);
 LinkListNode *Delete_i_LkList(LinkListNode *pHead, int i);
 
 void ShowLkList(LinkListNode *pHead);
+
+
+LinkListNode *ReverseLkList(LinkListNode *pHead);

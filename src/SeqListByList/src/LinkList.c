@@ -225,3 +225,65 @@ void ShowLkList(LinkListNode *pHead)
         p = p->pNext;
     }
 }
+
+
+LinkListNode *ReverseLkList(LinkListNode *pHead)
+{
+    if (pHead == NULL || pHead->pNext == NULL)
+    {
+        return pHead;
+    }
+
+    LinkListNode *prev    = NULL;         /// 前驱节点（初始为NULL）
+    LinkListNode *current = pHead->pNext; /// 当前节点（从第一个元素开始）
+    LinkListNode *next    = NULL;         /// 后继节点（临时存储）
+
+    /// 3. 记录第一个元素，后面需要将其next置为NULL
+    LinkListNode *firstElement = current;
+
+    /// 4. 遍历链表，逐个反转指针
+    while (current != NULL)
+    {
+        /// 4.1 保存当前节点的下一个节点
+        next = current->pNext;
+
+        /// 4.2 反转当前节点的指针方向
+        current->pNext = prev;
+
+        /// 4.3 移动prev和current指针
+        prev    = current;
+        current = next;
+
+        /// 此时的状态：
+        /// prev指向刚刚处理完的节点
+        /// current指向下一个待处理的节点
+        /// next已经完成了它的使命，在下一循环会重新赋值
+    }
+
+    /// 头节点 -> [1] -> 2 -> 3 -> 4 -> NULL
+    /// prev: NULL
+    /// current: 1
+    ///
+    /// 第一次循环
+    /// 头节点 -> [1] -> NULL    [2] -> 3 -> 4 -> NULL
+    ///            ↑             ↑
+    ///          prev=1        current=2
+    ///
+    /// 第二次循环
+    /// 头节点    [2] -> 1 -> NULL    [3] -> 4 -> NULL
+    ///	           ↑                  ↑
+    ///          prev=2            current=3
+    /// 注意：现在 2 指向了 1，形成局部反转链 2->1->NULL
+
+    /// 5. 更新头节点的next指针
+    /// 此时prev指向原链表的最后一个节点，即反转后的第一个元素
+    pHead->pNext = prev;
+
+    /// 6. 将原第一个元素的next置为NULL（现在它是最后一个元素）
+    if (firstElement != NULL)
+    {
+        firstElement->pNext = NULL;
+    }
+
+    return pHead;
+}

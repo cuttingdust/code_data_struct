@@ -1,5 +1,7 @@
 ﻿#include "LinkList.h"
 
+#include "../../SeqListByArray/include/SeqList.h"
+
 void PrintList(LinkListNode *pHead)
 {
     printf("\n********显示当前单链表中的全部元素******\n");
@@ -30,6 +32,11 @@ int main(int argc, char *argv[])
 
     //////////////////////////////////////////////////////////////////
     printf("\nList Size:%d\n", GetSizeLinkList(pHead));
+
+    //////////////////////////////////////////////////////////////////
+    ReverseLkList(pHead);
+    PrintList(pHead);
+
     getchar();
     return 0;
 }
