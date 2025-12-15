@@ -27,8 +27,8 @@ int main(int argc, char *argv[])
         InsertElemSqList(lPtr, 2000, 0);
         PrintList(lPtr);
         //////////////////////////////////////////////////////////////////
-        DelElemSqList(lPtr, 1); /// 删除1号: 0 
-        PrintList(lPtr);        
+        DelElemSqList(lPtr, 1); /// 删除1号: 0
+        PrintList(lPtr);
         //////////////////////////////////////////////////////////////////
         // int pos = LocateElemSqList(lPtr, 16);
         int pos = LocateElemSqList(lPtr, 2000);
@@ -42,7 +42,9 @@ int main(int argc, char *argv[])
         }
         PrintList(lPtr);
         //////////////////////////////////////////////////////////////////
-
+        /// rerverse
+        RevseSeqList(lPtr);
+        PrintList(lPtr);
     }
     else
     {

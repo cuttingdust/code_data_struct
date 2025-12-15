@@ -112,3 +112,19 @@ void showSeqList(SequenList *pList)
     }
     printf("\n");
 }
+
+void RevseSeqList(SequenList *pList)
+{
+    if (pList->last == 0 || pList->last == 1)
+    {
+        return;
+    }
+
+    int nCount = pList->last / 2;
+    for (int i = 0; i < nCount; i++)
+    {
+        int temp                         = pList->data[i];
+        pList->data[i]                   = pList->data[pList->last - 1 - i];
+        pList->data[pList->last - 1 - i] = temp;
+    }
+}

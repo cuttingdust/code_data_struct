@@ -65,3 +65,5 @@ int DelElemSqList(SequenList* pList, int k);
 /// \brief  遍历元素：从头到尾扫描线性表。
 /// \param pList  目标顺序数组
 void showSeqList(SequenList* pList);
+
+void RevseSeqList(SequenList* pList);
