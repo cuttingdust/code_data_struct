@@ -1,7 +1,5 @@
 ﻿#include "LinkList.h"
 
-#include "../../SeqListByArray/include/SeqList.h"
-
 void PrintList(LinkListNode *pHead)
 {
     printf("\n********显示当前单链表中的全部元素******\n");
