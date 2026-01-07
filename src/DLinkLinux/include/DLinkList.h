@@ -60,6 +60,18 @@ static inline void list_del(struct list_head *entry)
     __list_del(entry->prev, entry->next);
 }
 
+/// 从双链表中删除entry节点。
+static inline void __list_del_entry(struct list_head *entry)
+{
+    __list_del(entry->prev, entry->next);
+}
+
+/// 从双链表中删除entry节点，并将entry节点的前继节点和后继节点都指向entry本身。
+static inline void list_del_init(struct list_head *entry)
+{
+    __list_del_entry(entry);
+    INIT_LIST_HEAD(entry);
+}
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -111,3 +123,15 @@ static inline int list_empty(const struct list_head *head)
          &pos->member != (head); pos = n, n = list_entry(n->member.next, typeof(*n), member))
 
 #endif
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/// 用new节点取代old节点
+static inline void list_replace(struct list_head *old, struct list_head *new)
+{
+    new->next       = old->next;
+    new->next->prev = new;
+    new->prev       = old->prev;
+    new->prev->next = new;
+}
